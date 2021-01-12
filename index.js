@@ -1,99 +1,137 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-// Psuedo Codez
 // TODO: create a prompt of inquirer Q's
 inquirer
     .prompt([
         {
             type: 'input',
-            message: 'What is your name?',
+            message: 'What is this project named?',
             name: 'name',
         },
         {
             type: 'input',
-            message: 'What is your quest?',
-            name: 'quest',
+            message: 'What is the purpose/description of the project?',
+            name: 'projP',
         },
         {
             type: 'input',
-            message: 'Where are you from',
-            name: 'location',
+            message: 'What steps are needed to get this app running?',
+            name: 'install',
         },
         {
             type: 'input',
-            message: 'What is your LinkedIn Ural',
-            name: 'LinkedIn',
+            message: 'Caption for Screenshot 1',
+            name: 'ss1',
         },
         {
             type: 'input',
-            message: 'Who is your GitHub',
-            name: 'GitHub',
+            message: 'Screenshot 1 alt text',
+            name: 'ss1alt',
         },
+        {
+            type: 'input',
+            message: 'Screenshot 1 link',
+            name: 'ss1link',
+        },
+        {
+            type: 'input',
+            message: 'Caption for Screenshot 2',
+            name: 'ss2',
+        },
+        {
+            type: 'input',
+            message: 'Screenshot 2 alt text',
+            name: 'ss2alt',
+        },
+        {
+            type: 'input',
+            message: 'Screenshot 2 link',
+            name: 'ss2link',
+        },
+        {
+            type: 'input',
+            message: 'What year was this app made?',
+            name: 'year',
+        },
+        {
+            type: 'input',
+            message: 'Live Site link',
+            name: 'live',
+        },
+        {
+            type: 'input',
+            message: 'GitHub Repo link',
+            name: 'github',
+        },
+
     ])
     .then((response) => {
-        const htmlOutput = `<!DOCTYPE html>
-<html lang="en">
+        const mdOutput = `# ${response.name}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BootStrap CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>Mini Project</title>
-</head>
+## Purpose/Description
 
-<body>
-    <!-- NavBar -->
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <h1 class="navbar-brand mb-0 h1" id="userName">${response.name}</h1>
-        </div>
-    </nav>
-    <!-- Main Content Container -->
-    <main class="container">
-        <section class="row border">
+${response.projP}
 
-            <article class="col-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://i.postimg.cc/brStT1tN/bj.jpg" class="card-img-top" alt="Buddy Christ">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Name: ${response.name}<br>
-                            Quest: ${response.quest}<br>
-                            Location: ${response.location}<br>
-                        </h5>
-                        <p class="card-text" id="personalData"></p>
-                    </div>
-            </article>
+* [Installation](#installation)
+* [Usage](#usage)
+* [Credits](#credits)
+* [License](#license)
 
-            <article class="col-6">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://i.postimg.cc/brStT1tN/bj.jpg" class="card-img-top" alt="Buddy Christ">
-                    <div class="card-body">
-                        <h5 class="card-title">Personal Details</h5>
-                        <p class="card-text" id="personalData">
-                            <a href="${response.GitHub}">GitHub Repo</a>
-                            <a href="${response.LinkedIn}">LinkedIn Profile</a>
-                        </p>
+<br>
 
-                    </div>
-                </div>
-            </article>
-        </section>
+## Installation
 
-    </main>
+${response.install}
 
-    <!-- BootStrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
-</body>
+<br>
 
-</html>`
+## Usage 
 
-        fs.writeFile(`${response.name}.md`, htmlOutput, err => {
+### ${response.ss1}
+[${response.ss1alt}](${response.ss1link})
+
+### ${response.ss2}
+[${response.ss2alt}](${response.ss2link})
+
+<br>
+
+## Credits
+
+First Header | Second Header
+------------ | -------------
+Content from cell 1 | Content from cell 2
+Content in the first column | Content in the second column
+
+<br>
+
+## License
+
+MIT License
+
+Copyright (c) [${response.year}] [Douglas Johnson]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+---
+
+<br>
+
+## Deployments
+
+Live Site | GitHub Repo
+------------ | -------------
+${response.live} | ${response.github}`
+
+        fs.writeFile(`${response.name}README.md`, mdOutput, err => {
             if (err) {
                 console.log(err);
             } else {
