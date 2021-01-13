@@ -89,10 +89,10 @@ ${response.install}
 ## Usage 
 
 ### ${response.ss1}
-[${response.ss1alt}](${response.ss1link})
+![${response.ss1alt}](${response.ss1link})
 
 ### ${response.ss2}
-[${response.ss2alt}](${response.ss2link})
+![${response.ss2alt}](${response.ss2link})
 
 <br>
 
